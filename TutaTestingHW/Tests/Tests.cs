@@ -5,26 +5,26 @@ namespace TutaTestingHW
     public class Tests : Base
     {
 
-        [Test]
-        public void Test1SignUp()
+        [Test, Order(1)]
+        public void SignUp()
         {
             HomePage.NavigateToPage();
             HomePage.ClickSignUp();
-            HomePage.CreateUser("Jonelis395", "Jonelis");
+            HomePage.CreateUser("Jonelis", "Jonelis");
             AssertionPage.SignUpValidation("Sign up successful.");
 
         }
 
-        [Test]
-        public void Test2Login()
+        [Test, Order(2)]
+        public void Login()
         {
             HomePage.ClickLogin();
-            HomePage.LoginUser("Jonelis395", "Jonelis");
-            AssertionPage.LoginValidation("Jonelis395");
+            HomePage.LoginUser("Jonelis", "Jonelis");
+            AssertionPage.LoginValidation("Jonelis");
         }
 
-        [Test]
-        public void Test3AddProductToCart()
+        [Test, Order(3)]
+        public void AddProductToCart()
         {
             HomePage.ProductFilter("Laptops");
             HomePage.FoundProduct("MacBook air");
@@ -32,8 +32,8 @@ namespace TutaTestingHW
             AssertionPage.VerifyAddedProduct("Product added.");
         }
 
-        [Test]
-        public void Test4PlaceOrder()
+        [Test, Order(4)]
+        public void PlaceOrder()
         {
             ProductPage.ClickOnCart();
             CartPage.ClickPlaceOrder();

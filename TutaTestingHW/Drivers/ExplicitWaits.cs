@@ -17,11 +17,6 @@ namespace TutaTestingHW
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementToBeClickable(name));
         }
-        public static IWebElement WaitByClickable(By name)
-        {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            return wait.Until(ExpectedConditions.ElementIsVisible(name));
-        }
         public static void WaitToAlert()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));

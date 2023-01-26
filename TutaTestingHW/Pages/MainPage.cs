@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 
 namespace TutaTestingHW
@@ -18,7 +19,18 @@ namespace TutaTestingHW
         IWebElement LoginButton => driver.FindElement(By.XPath("//button [@class='btn btn-primary' and text()='Log in']"));
         IReadOnlyCollection<IWebElement> ProductFilters => driver.FindElements(By.Id("itemc"));
         IReadOnlyCollection<IWebElement> ProductFinder => driver.FindElements(By.CssSelector(".card-title"));
+        static readonly int RandomId;
 
+        static MainPage()
+        {
+           RandomId = new Random().Next();
+        }
+
+        public int ReturnRandomId()
+        {
+            Console.WriteLine(RandomId);
+            return RandomId;
+        }
 
         public void NavigateToPage()
         {
@@ -34,7 +46,7 @@ namespace TutaTestingHW
         public void CreateUser(string username, string password)
         {
             ExplicitWaits.WaitToClickable(RegisterButton);
-            Username.SendKeys(username);
+            Username.SendKeys(username + ReturnRandomId());
             Password.SendKeys(password);
             RegisterButton.Click();
         }
@@ -47,7 +59,7 @@ namespace TutaTestingHW
         public void LoginUser(string username, string password)
         {
             ExplicitWaits.WaitToClickable(LoginButton);
-            LoginUsername.SendKeys(username);
+            LoginUsername.SendKeys(username + ReturnRandomId());
             LoginPassword.SendKeys(password);
             LoginButton.Click();
         }
@@ -66,7 +78,7 @@ namespace TutaTestingHW
 
         public void FoundProduct(string Text)
         {
-            ExplicitWaits.WaitByClickable(By.LinkText(Text));
+            ExplicitWaits.WaitToDisplayed(By.LinkText(Text));
 
             foreach (var select in ProductFinder)
             {

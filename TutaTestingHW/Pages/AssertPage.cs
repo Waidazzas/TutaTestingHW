@@ -15,7 +15,7 @@ namespace TutaTestingHW
             ExplicitWaits.WaitToAlert();
             var SucceedSign = driver.SwitchTo().Alert();
             Assert.That(SucceedSign.Text, Is.EqualTo(AlertText));
-            driver.SwitchTo().Alert().Accept();
+            SucceedSign.Accept();
             CloseButton.Click();
 
         }
@@ -23,14 +23,14 @@ namespace TutaTestingHW
         public void LoginValidation(string AlertText)
         {
             ExplicitWaits.WaitToDisplayed(By.Id("nameofuser"));
-            Assert.That(LoginName.Text, Is.EqualTo($"Welcome {AlertText}"));
+            Assert.That(LoginName.Text, Is.EqualTo($"Welcome {AlertText + HomePage.ReturnRandomId()}"));
         }
         public void VerifyAddedProduct(string AlertText)
         {
             ExplicitWaits.WaitToAlert();
             var ProductAlert = driver.SwitchTo().Alert();
             Assert.That(ProductAlert.Text, Is.EqualTo(AlertText));
-            driver.SwitchTo().Alert().Accept();
+            ProductAlert.Accept();
         }
         public void VerifyPurchasedProduct(string ProceedText)
         {
